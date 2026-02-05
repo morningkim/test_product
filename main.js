@@ -1,8 +1,37 @@
-const generateBtn = document.getElementById('generate-btn');
-const numbersContainer = document.getElementById('numbers-container');
+let numbersContainer;
 
-generateBtn.addEventListener('click', () => {
-    generateLottoNumbers();
+document.addEventListener('DOMContentLoaded', () => {
+    const generateBtn = document.getElementById('generate-btn');
+    numbersContainer = document.getElementById('numbers-container');
+
+    generateBtn.addEventListener('click', () => {
+        generateLottoNumbers();
+    });
+
+    // Theme toggle logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.classList.add(currentTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark-mode');
+    } else {
+        body.classList.add('light-mode');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light-mode');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+    });
 });
 
 function generateLottoNumbers() {
@@ -16,6 +45,10 @@ function generateLottoNumbers() {
 }
 
 function displayNumbers(numbers) {
+    if (!numbersContainer) {
+        return;
+    }
+
     numbersContainer.innerHTML = '';
     for (const number of numbers) {
         const numberBall = document.createElement('div');
@@ -24,28 +57,3 @@ function displayNumbers(numbers) {
         numbersContainer.appendChild(numberBall);
     }
 }
-
-// Theme toggle logic
-const themeToggleBtn = document.getElementById('theme-toggle');
-const body = document.body;
-
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    body.classList.add(currentTheme);
-} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    body.classList.add('dark-mode');
-} else {
-    body.classList.add('light-mode');
-}
-
-themeToggleBtn.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        localStorage.setItem('theme', 'light-mode');
-    } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark-mode');
-    }
-});

@@ -25,6 +25,7 @@ body.dark-mode {
 body {
     font-family: sans-serif;
     display: flex;
+    flex-direction: column; /* Added to stack elements vertically */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -93,4 +94,82 @@ body.dark-mode #generate-btn {
 
 body.dark-mode #theme-toggle {
     background-color: #0056b3;
+}
+
+/* Contact Form Styles */
+.contact-form-container {
+    margin-top: 30px; /* Space from the lotto generator */
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-form-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-color-light); /* Default */
+}
+
+body.dark-mode .contact-form-container h2 {
+    color: var(--text-color-dark);
+}
+
+.contact-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.contact-form-container label {
+    font-weight: bold;
+    color: var(--text-color-light); /* Default */
+}
+
+body.dark-mode .contact-form-container label {
+    color: var(--text-color-dark);
+}
+
+.contact-form-container input[type="text"],
+.contact-form-container input[type="email"],
+.contact-form-container textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--container-bg-light); /* Match container bg */
+    color: var(--text-color-light); /* Match text color */
+}
+
+body.dark-mode .contact-form-container input[type="text"],
+body.dark-mode .contact-form-container input[type="email"],
+body.dark-mode .contact-form-container textarea {
+    background-color: var(--container-bg-dark);
+    border-color: #555;
+    color: var(--text-color-dark);
+}
+
+.contact-form-container textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.contact-form-container button[type="submit"] {
+    background-color: #ff6f00; /* Orange for submit button */
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form-container button[type="submit"]:hover {
+    background-color: #e65100;
+}
+
+body.dark-mode .contact-form-container button[type="submit"] {
+    background-color: #cc5800;
+}
+
+body.dark-mode .contact-form-container button[type="submit"]:hover {
+    background-color: #b34d00;
 }
