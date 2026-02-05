@@ -1,20 +1,55 @@
+:root {
+    --background-color-light: #f0f0f0;
+    --text-color-light: #333;
+    --container-bg-light: #ffffff;
+    --number-ball-bg-light: #3498db;
+    --number-ball-color-light: white;
+
+    --background-color-dark: #333;
+    --text-color-dark: #f0f0f0;
+    --container-bg-dark: #444;
+    --number-ball-bg-dark: #2c3e50;
+    --number-ball-color-dark: white;
+}
+
+body.light-mode {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+
+body.dark-mode {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    /* Default to light mode variables if no class is set, or for elements not explicitly themed */
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
 }
 
 .container {
     text-align: center;
+    background-color: var(--container-bg-light); /* Default */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .container {
+    background-color: var(--container-bg-dark);
 }
 
 .numbers-container {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: center; /* Center numbers horizontally */
 }
 
 .number-ball {
@@ -25,12 +60,37 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    color: white;
-    background-color: #3498db;
+    color: var(--number-ball-color-light); /* Default */
+    background-color: var(--number-ball-bg-light); /* Default */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#generate-btn {
+body.dark-mode .number-ball {
+    color: var(--number-ball-color-dark);
+    background-color: var(--number-ball-bg-dark);
+}
+
+#generate-btn, #theme-toggle {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745; /* Green for generate */
+    color: white;
+    margin-top: 10px; /* Space from numbers */
+}
+
+#theme-toggle {
+    background-color: #007bff; /* Blue for toggle */
+    margin-left: 10px;
+}
+
+/* Adjust button styles for dark mode if needed */
+body.dark-mode #generate-btn {
+    background-color: #218838;
+}
+
+body.dark-mode #theme-toggle {
+    background-color: #0056b3;
 }
